@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
-import { get } from "http";
+// import { serialize } from "next-mdx-remote/serialize";
+// import { get } from "http";
 
 const CONTENT_PATH = path.join(process.cwd(), "content/pages");
 
@@ -25,3 +25,17 @@ function getContent(filename:string) {
 export async function getHomePageContent() {
   return getContent("home.mdx");
 }
+
+export async function getTeamPageContent() {
+  return getContent("team.mdx");
+}
+
+export async function getSolutionsPageContent() {
+  return getContent("solutions.mdx");
+}
+
+export async function getContactPageContent() {
+  return getContent("contact.mdx");
+}
+
+

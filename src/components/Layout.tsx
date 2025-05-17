@@ -8,7 +8,7 @@ type Props = {
   children: React.ReactNode;
 };
 export default function Layout({ children }: Props) {
-  const copyright = "";
+  const copyright = "Copyright © 2025 Volynt Aero, Inc. All rights reserved.";
 
   return (
     <>

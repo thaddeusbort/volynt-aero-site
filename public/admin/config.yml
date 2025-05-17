@@ -126,6 +126,21 @@ collections:
               - { label: "Text", name: "text", widget: "string" }
               - { label: "Button Label", name: "buttonLabel", widget: "string" }
 
+      - name: "team"
+        label: "Team Page"
+        file: "content/pages/team.mdx"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - label: "Team Members"
+            name: "teamMembers"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Bio", name: "bio", widget: "markdown" }
+
   - name: "news"
     label: "News"
     folder: "content/news/"
