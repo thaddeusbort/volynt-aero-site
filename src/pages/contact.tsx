@@ -1,7 +1,7 @@
 import SubLayout from "../components/SubLayout";
 import { GetStaticProps } from "next";
 import { getContactPageContent } from "../lib/mdx";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote"
 import ContactForm from "../components/ContactForm";
 
@@ -12,7 +12,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default function Team({ mdxSource, frontMatter }) {
+export default function Contact({ mdxSource, frontMatter }) {
   return (
     <SubLayout title={frontMatter.title}>
       <div className="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">

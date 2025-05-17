@@ -141,6 +141,21 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Bio", name: "bio", widget: "markdown" }
       
+      - name: "solutions"
+        label: "Solutions Page"
+        file: "content/pages/solutions.mdx"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Title", name: "title", widget: "markdown" }
+              - { label: "Text", name: "text", widget: "markdown" }
+      
       - name: "contact"
         label: "Contact Page"
         file: "content/pages/contact.mdx"

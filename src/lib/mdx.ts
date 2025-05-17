@@ -38,7 +38,7 @@ export async function getTeamPageContent() {
 }
 
 export async function getSolutionsPageContent() {
-  return getContent("solutions.mdx");
+  return getContent("solutions.mdx", true);
 }
 
 export async function getContactPageContent() {
