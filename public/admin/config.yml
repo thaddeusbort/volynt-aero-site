@@ -35,12 +35,10 @@ collections:
               label: Keyword
               name: keyword
               widget: "string"
-          - label: "Twitter account"
-            name: "twitter_account"
+          - label: "Copyright"
+            name: "copyright"
             widget: "string"
-          - label: "GitHub account"
-            name: "github_account"
-            widget: "string"
+            hint: "Copyright notice for the site"
 
   - name: "meta"
     label: "Meta"
@@ -88,38 +86,60 @@ collections:
                 widget: "string"
                 hint: "Tag name for displaying on the site"
 
-  - name: "posts"
-    label: "Posts"
-    folder: "content/posts/"
+  - name: "pages"
+    label: "Pages"
+    delete: false
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "content/pages/home.mdx"
+        fields:
+          - label: "Hero Image"
+            name: "heroImage"
+            widget: "image"
+          - label: "Hero Title"
+            name: "heroTitle"
+            widget: "markdown"
+          - label: "Hero Text"
+            name: "heroText"
+            widget: "markdown"
+          - label: "Hero Button Label"
+            name: "heroButtonLabel"
+            widget: "string"
+          - label: "Large Quote Text"
+            name: "largeQuote"
+            widget: "markdown"
+          - label: "Section Blocks"
+            name: "sections"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Title", name: "title", widget: "markdown" }
+              - { label: "Text", name: "text", widget: "markdown" }
+          - label: "Contact Section"
+            name: "contact"
+            widget: "object"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Button Label", name: "buttonLabel", widget: "string" }
+
+  - name: "news"
+    label: "News"
+    folder: "content/news/"
     extension: "mdx"
     format: "frontmatter"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     identifier_field: slug
     summary: "{{title}}"
     fields:
-      - label: "Slug"
-        name: "slug"
-        widget: "string"
-      - label: "Title"
-        name: "title"
-        widget: "string"
-      - label: "Publish Date"
-        name: "date"
-        widget: "datetime"
-        format: "YYYY-MM-DD"
-        dateFormat: "YYYY-MM-DD"
-        timeFormat: false
-      - label: Author
-        name: "author"
-        widget: relation
-        collection: "meta"
-        file: "authors"
-        searchFields:
-          - "authors.*.name"
-        displayFields:
-          - "authors.*.name"
-        valueField: "authors.*.slug"
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
+      - { label: "Featured Image", name: "thumbnail", widget: "image" }
       - label: Tags
         label_singular: "Tag"
         name: "tags"
