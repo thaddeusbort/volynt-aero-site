@@ -1,19 +1,16 @@
 {
   "base_url": "https://clinquant-gumdrop-f86fa1.netlify.app/",
-  "site_title": "My Netlify Site",
-  "site_description": "Next.js blog template for Netlify",
+  "site_title": "Volynt Aero",
+  "site_description": "Volynt Aero - unleashing the power of flight.",
   "site_keywords": [
     {
-      "keyword": "Next.js"
+      "keyword": "evtol"
     },
     {
-      "keyword": "Netlify"
+      "keyword": "aviation"
     },
     {
-      "keyword": "React"
+      "keyword": "aerospace"
     }
-  ],
-  "posts_per_page": 5,
-  "twitter_account": "@my-account",
-  "github_account": "wutali"
+  ]
 }

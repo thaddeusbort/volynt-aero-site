@@ -1,92 +1,60 @@
+import { GetStaticProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Burger from "./Burger";
 import { useState } from "react";
 
+// export const getStaticProps: GetStaticProps = async () => {
+//   const { frontMatter } = await getHomePageContent();
+//   return {
+//     props: { frontMatter },
+//   };
+// };
+
 export default function Navigation() {
   const router = useRouter();
-  const [active, setActive] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const logo = "/img/logo.webp";
+  const menu = [
+    { "label": "Home", "link": "/" },
+    { "label": "Team", "link": "/team"},
+    { "label": "Solutions", "link": "/solutions" },
+    { "label": "Contact Us", "link": "/contact" }
+  ];
   return (
-    <>
-      <Burger active={active} onClick={() => setActive(!active)} />
-      <div className={"container " + (active ? "active" : "")}>
-        <ul>
-          <li>
-            <Link href="/" legacyBehavior>
-              <a className={router.pathname === "/" ? "active" : null}>about</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/posts" legacyBehavior>
-              <a
-                className={
-                  router.pathname.startsWith("/posts") ? "active" : null
-                }
-              >
-                blog
-              </a>
-            </Link>
-          </li>
-        </ul>
-        <style jsx>
-          {`
-            .container {
-              width: 0;
-            }
-            ul {
-              opacity: 0;
-              width: 100%;
-              height: 100vh;
-              text-align: right;
-              list-style: none;
-              margin: 0;
-              padding: 0;
-              position: fixed;
-              top: 0;
-              background-color: #fff;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              z-index: 1;
-              transform: translateY(100%);
-              transition: opacity 200ms;
-            }
-            .active ul {
-              opacity: 1;
-              transform: translateY(0);
-            }
-            li {
-              margin-bottom: 1.75rem;
-              font-size: 2rem;
-              padding: 0 1.5rem 0 0;
-            }
-            li:last-child {
-              margin-bottom: 0;
-            }
-            .active {
-              color: #222;
-            }
-
-            @media (min-width: 769px) {
-              .container {
-                width: 7rem;
-                display: block;
-              }
-              ul {
-                opacity: 1;
-                width: 7rem;
-                top: auto;
-                display: block;
-                transform: translateY(0);
-              }
-              li {
-                font-size: 1rem;
-                padding: 0;
-              }
-            }
-          `}
-        </style>
+    <header className="fixed top-0 w-full bg-white shadow-md z-50">
+      <div className="max-w-screen-xl mx-auto px-5">
+        <div className="flex flex-col lg:flex-row justify-between items-center my-5">
+          <div className="flex w-full lg:w-auto items-center justify-between"> <a href="/" className="text-lg"> <img src={logo} alt="Volynt Aero" loading="eager" width="200" height="76" decoding="async"/> </a>
+            <div className="block lg:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen) }
+                className="text-gray-800">
+                <svg fill="currentColor" className="w-4 h-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <title>Menu</title>
+                  <path className={`${isOpen ? "block" : "hidden"}`} fillRule="evenodd" clipRule="evenodd" d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"></path>
+                  <path className={`${!isOpen ? "block" : "hidden"}`} fillRule="evenodd" d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <nav className={`w-full lg:w-auto mt-2 lg:flex lg:mt-0 ml-auto mr-10 ${isOpen ? 'block' : 'hidden'}`}>
+            <ul className="flex flex-col lg:flex-row lg:gap-3">
+              {menu.filter(item => !!item?.link && item?.link != "/contact").map((item, i) => (
+                <li key={i}> <Link href={item?.link!} className="flex lg:px-3 py-2 text-primary-100 font-medium border-b-4 border-solid border-white hover:opacity-80 lg:hover:border-primary-100"> {item?.label} </Link> </li>
+              ))}
+            </ul>
+            <div className="lg:hidden flex items-center mt-3 gap-4">
+              <a href="/contact" className="rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 w-full px-4 py-2 bg-black text-white hover:bg-gray-800 border-2 border-transparent">Contact Us</a>
+            </div>
+          </nav>
+          <div>
+            <div className="hidden lg:flex items-center gap-4">
+              <a href="/contact" className="rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black text-white hover:bg-gray-800 border-2 border-transparent">Contact Us</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </>
+    </header>
   );
 }
